@@ -1,0 +1,18 @@
+.cheader{
+	font-size:7rem;
+	font-style: arial;
+}
+.cbody{
+	font-size: 1.5rem;
+	font-style: arial;
+	box-sizing: border-box;
+	box-shadow: 1px 2px 3px 3px;
+	padding: 50px;
+}
+.cnotice{
+	font-size: 1.5rem;
+	font-style: arial;
+	color: #343a40;
+	margin: 20px 10px ;
+	
+}

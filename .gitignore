@@ -1,0 +1,5 @@
+/front-end/node_modules
+/my-first-server/node_modules
+/my-first-server/package-lock.json
+/my-first-server/myDB.db
+/front-end/package-lock.json

@@ -1,0 +1,42 @@
+.subSection{
+box-shadow: 1px 2px 3px 3px;
+margin: 30px auto;
+padding: 10px;
+font-size: 1.5rem;
+font-style: arial;
+}
+
+.rating{
+font-size: 4rem;
+}
+.rating button{
+	cursor: pointer
+}
+
+.active-rating button{
+	background-color: #fd7e14
+}
+.subSection-heading{
+margin-top: 0px;
+margin-bottom: 20px;
+text-align:left;
+}
+.subSection-body{
+margin-bottom:10px; 
+}
+
+.category button{
+	color: black;
+    background-color: transparent;
+    background-image: none;
+    border-color: #28a745;
+    font-size: 2rem;
+	font-style: arial;
+
+
+}
+
+.active-category button{
+	background-color: #fd7e14;
+	color: white;
+}
