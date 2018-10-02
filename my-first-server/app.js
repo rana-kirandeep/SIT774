@@ -3,7 +3,7 @@ const express = require('express')
 const uniqid = require('uniqid');
 const sqlite3 = require('sqlite3');
 
-const db = new sqlite3.Database('./src/db1/mydataBase',(err)=>console.log("Dab"+err));
+const db = new sqlite3.Database('./src/db1/mydataBase',(err)=>console.log(err));
 
 //const ResponseCreator = require('./src/response/resCreator.js');
 //const ClassifierEngin = require('./src/classifierEngin/classifierEngin.js');
@@ -43,6 +43,39 @@ app.get('/form', (req, res) => {
     res.sendFile(__dirname + "/static/index.html");
 })
 
+
+app.post('/contactUs',(req,res)=>{
+
+    contactUs={...req.body}
+    res.send(contactUs);
+
+})
+
+app.post('/login',(req,res)=>{
+    credentials={...req.body}
+    const query=`select * from Users where userName='${credentials.userName}' and password='${credentials.passwd}'`
+    db.all(query,(err, row)=>{
+       console.log(err)
+        res.send({login:row.length>0});
+    })
+   
+})
+
+
+app.post('/createUser',(req,res)=>{
+     
+     user={...req.body}
+
+     let query=`INSERT INTO Users VALUES ('${user.userName}', '${user.passwd}' )`
+
+     db.run(query);
+
+
+    res.send({creatUser:true});
+
+})
+
+
 app.post('/feedback', (req, res) => {
     feedback={...req.body}
     saveFeedbackToDb(feedback);
@@ -57,6 +90,19 @@ app.get('/feedback',(req, res)=>{
        res.send(row)
     })
 })
+
+
+
+/*createUser=(user)=>{
+    //feedback.id=uniqid();
+    let query=`INSERT INTO Users VALUES ('${user.userName}', '${user.passwd}' )`              )`
+    
+}*/
+
+
+
+
+
 
 saveFeedbackToDb=(feedback)=>{
    

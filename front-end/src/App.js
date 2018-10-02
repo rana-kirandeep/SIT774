@@ -7,6 +7,7 @@ import Contactus from './container/contactus/contactus'
 import ProductDetail from './component/productDetail/productDetail' 
 import Feedback from './container/feedback/feedback'
 import AboutUs from './container/aboutus/aboutus'
+import Login from './container/login/login'
 import { Route } from 'react-router-dom'
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
           <Route path="/contactus" exact component={Contactus} />
           <Route path="/feedback" exact component={Feedback} />
           <Route path="/aboutus" exact component={AboutUs} />
+          <Route path="/" exact component={Login} />
 
         </Layout>
       </div>

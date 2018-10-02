@@ -6,6 +6,13 @@ var db = new sqlite3.Database('./mydataBase');
     db.run("CREATE TABLE IF NOT EXISTS feedback (id TEXT, rating TEXT,category TEXT, comment TEXT)");
 
     db.run("DELETE FROM feedback");
+
+
+    db.run("CREATE TABLE IF NOT EXISTS Users (userName TEXT, password TEXT)");
+
+    db.run("DELETE FROM Users");
+
+
    //  db.run(`INSERT INTO feedback VALUES ("1", "2", "3","test")`);
    // db.run(`INSERT INTO feedback VALUES ("Karl", "deakin2016", "2")`);
    // db.run(`INSERT INTO feedback VALUES ("Belgrave", "barby", "3")`);
