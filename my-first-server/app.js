@@ -65,8 +65,9 @@ app.post('/login',(req,res)=>{
 app.post('/createUser',(req,res)=>{
      
      user={...req.body}
+     user.id=uniqid();
 
-     let query=`INSERT INTO Users VALUES ('${user.userName}', '${user.passwd}' )`
+     let query=`INSERT INTO Users VALUES ('${user.id}','${user.userName}', '${user.passwd}' )`
 
      db.run(query);
 
@@ -92,18 +93,6 @@ app.get('/feedback',(req, res)=>{
 })
 
 
-
-/*createUser=(user)=>{
-    //feedback.id=uniqid();
-    let query=`INSERT INTO Users VALUES ('${user.userName}', '${user.passwd}' )`              )`
-    
-}*/
-
-
-
-
-
-
 saveFeedbackToDb=(feedback)=>{
    
     feedback.id=uniqid();
@@ -111,6 +100,122 @@ saveFeedbackToDb=(feedback)=>{
                              '${feedback.category}', '${feedback.comment}' )`
     db.run(query);
 }
+
+app.post('/delete/:id',(req,res)=>{
+
+     userObj={...req.params}
+     console.log(userObj)
+     let query=`DELETE FROM Users where id='${req.params.id}'`
+     db.run(query)
+     console.log(query)
+     //debugger
+     res.redirect('/delete')
+
+})
+
+
+app.get('/delete',(req,res)=>{
+
+
+const query=`select * from Users`
+    db.all(query,(err, row)=>{
+       user=row[0]
+
+let htmlStr=`<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Website User</title>
+</head>
+<style type="text/css">
+    div{
+       
+        font-size: 1.5rem;
+        margin: auto 20%;
+    }
+    table{
+        border: 2px solid white;
+        text-align:center;
+
+    }
+    th{
+    background-color: green
+    }
+    td{
+    background-color: #7ac142
+    }
+
+</style>
+<script type="text/javascript">
+
+function submitData(){
+    
+    let radios=document.getElementsByName("row");
+    for (i = 0; i < radios.length; i++) {
+    if (radios[i].checked) {
+          
+           formElement=document.getElementById('myform')
+           formElement.action = "http://localhost:4000/delete/"+radios[i].value;
+            
+          formElement.submit();
+
+        }
+    }
+}
+
+    
+</script>
+
+<body>
+    <form id="myform" method="post" ation="http://localhost:4000/delete">
+    <input type="text" name="id" value="" hidden="true">
+    </form>
+<div >
+    The User table information
+    <table>
+        <tr>
+        <th> </th>
+        <th>ID </th>
+        <th>User Name</th>
+        <th>Password </th>          
+        </tr>`
+
+        let tableRow=""
+        row.forEach((user)=>{
+            tableRow+=`<tr>
+            <td><input type="radio" name="row" value=${user.id}></td>
+            <td>${user.id}</td>
+            <td>${user.userName}</td>
+            <td>${user.password}</td>
+        </tr>`
+        })
+
+
+        htmlStr=htmlStr+tableRow+       
+
+    `</table>
+    <button onClick=submitData()>delete</button>
+
+</div>
+
+
+</body>
+</html>`;
+
+
+
+
+
+
+        res.send(htmlStr);
+    })
+
+
+
+
+
+
+})
+
 
 
 app.get('/getc', (req, res) => {

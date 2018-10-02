@@ -8,7 +8,7 @@ var db = new sqlite3.Database('./mydataBase');
     db.run("DELETE FROM feedback");
 
 
-    db.run("CREATE TABLE IF NOT EXISTS Users (userName TEXT, password TEXT)");
+    db.run("CREATE TABLE IF NOT EXISTS Users (id TEXT, userName TEXT, password TEXT)");
 
     db.run("DELETE FROM Users");
 
