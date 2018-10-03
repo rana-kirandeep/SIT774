@@ -12,7 +12,7 @@ const product = (props) => {
 				<div className="col-12" >
 					<div className="prodImage">
 						<Link to={"/productDetail/" + props.product.id} >
-							<img src="img/1.png" className="img-thumbnail product-img" />
+							<img src={`img/${props.product.image}`} className="img-thumbnail product-img" />
 						</Link>
 					</div>
 

@@ -38,7 +38,7 @@ class ProductDetail extends Component {
 				<div className="row" >
 					<div className="col-8" align="center" style={{ backgroundColor1: 'green' }}>
 						<div className="pproduct-img">
-							<img className="img-fluid product-detail-img" src={"/img/" + this.state.item.id + ".png"} alt={"img/" + this.state.item.id + ".png"} />
+							<img className="img-fluid product-detail-img" src={"/img/" + this.state.item.id + "_big.jpg"} alt={"img/" + this.state.item.id + ".jpg"} />
 						</div>
 
 					</div>
